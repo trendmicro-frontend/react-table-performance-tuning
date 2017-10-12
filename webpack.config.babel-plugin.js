@@ -23,7 +23,11 @@ module.exports = {
             },
             {
                 test: /\.styl$/,
-                loader: 'style-loader!css-loader?camelCase&modules&importLoaders=1&localIdentName=[hash:base64:8]!stylus-loader'
+                use: [
+                    'style-loader',
+                    'css-loader?camelCase&modules&importLoaders=1&localIdentName=[local]---[hash:base64:8]',
+                    'stylus-loader'
+                ]
             },
             {
                 test: /\.css$/,
