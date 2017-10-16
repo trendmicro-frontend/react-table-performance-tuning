@@ -44,6 +44,7 @@ class App extends PureComponent {
                     </Button>
                 </div>
                 <div className="row">
+                    <p>Records: {data.length}</p>
                     <Selectable
                         ref={el => {
                             this.selectable = el;

@@ -97,6 +97,10 @@ class Selectable extends PureComponent {
             width: 38
         },
         {
+            title: '#',
+            dataKey: 'id'
+        },
+        {
             title: 'Event Type',
             dataKey: 'eventType'
         },
@@ -119,6 +123,7 @@ class Selectable extends PureComponent {
     render() {
         return (
             <Table
+                justified={false}
                 rowKey="id"
                 columns={this.columns}
                 data={this.state.data}

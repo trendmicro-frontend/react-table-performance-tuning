@@ -293,6 +293,9 @@ var Selectable = (_temp2 = _class = function (_PureComponent) {
             },
             width: 38
         }, {
+            title: '#',
+            dataKey: 'id'
+        }, {
             title: 'Event Type',
             dataKey: 'eventType'
         }, {
@@ -318,6 +321,7 @@ var Selectable = (_temp2 = _class = function (_PureComponent) {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(_src2.default, {
+                justified: false,
                 rowKey: 'id',
                 columns: this.columns,
                 data: this.state.data,
@@ -346,13 +350,13 @@ exports.default = Selectable;
 
 var data = [];
 
-for (var i = 1; i < 1000; ++i) {
+for (var i = 1; i <= 5000; ++i) {
     data.push({
         id: i,
         checked: false,
         eventType: "Virus/Malware_" + i,
-        affectedDevices: 20 + i,
-        detections: 10 + i
+        affectedDevices: 20,
+        detections: 10
     });
 }
 
@@ -459,6 +463,12 @@ var App = function (_PureComponent) {
                 _react2.default.createElement(
                     'div',
                     { className: 'row' },
+                    _react2.default.createElement(
+                        'p',
+                        null,
+                        'Records: ',
+                        _datasource2.default.length
+                    ),
                     _react2.default.createElement(_Selectable2.default, {
                         ref: function ref(el) {
                             _this2.selectable = el;
@@ -27775,4 +27785,4 @@ exports.default = uniqueid;
 /***/ })
 
 /******/ });
-//# sourceMappingURL=bundle.js.map?1c4ea2e007f3aeb17032
+//# sourceMappingURL=bundle.js.map?3e1e045c9bde839e4671
