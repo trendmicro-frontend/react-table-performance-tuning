@@ -14,23 +14,27 @@ class App extends PureComponent {
     state = {
         elapsedTime: 0
     };
-    toggleAll = () => {
-        this.selectable && this.selectable.toggleAll();
-    };
+
     onUpdateStart = () => {
         this.startTime = window.performance.now();
+        this.endTime = 0;
     };
     onUpdateEnd = () => {
         this.endTime = window.performance.now();
-        const elapsedTime = (this.endTime - this.startTime).toFixed(2);
-        this.setState({ elapsedTime: elapsedTime });
+        this.setState({ elapsedTime: this.endTime - this.startTime });
+    };
+    toggleAll = () => {
+        this.selectable && this.selectable.toggleAll();
     };
 
     render() {
-        const { elapsedTime } = this.state;
-
         return (
             <div className="container-fluid" style={{ padding: '20px 20px 0' }}>
+                <div className="row">
+                    <p style={{ fontSize: 24, marginBottom: 20 }}>
+                        Render Time: {this.state.elapsedTime.toFixed(2)} ms
+                    </p>
+                </div>
                 <div className="row" style={{ marginBottom: 20 }}>
                     <Button
                         btnStyle="flat"
@@ -38,8 +42,6 @@ class App extends PureComponent {
                     >
                         Toggle All
                     </Button>
-                    &nbsp;
-                    {`Elapsed Time: ${elapsedTime}ms`}
                 </div>
                 <div className="row">
                     <Selectable

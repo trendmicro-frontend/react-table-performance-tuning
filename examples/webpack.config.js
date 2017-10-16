@@ -28,11 +28,6 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 loader: 'babel-loader',
-                options: {
-                    presets: ['es2015', 'stage-0', 'react'],
-                    plugins: [
-                    ]
-                },
                 exclude: /(node_modules|bower_components)/
             },
             {
