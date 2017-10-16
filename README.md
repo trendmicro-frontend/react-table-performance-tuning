@@ -1,45 +1,45 @@
-# react-table [![build status](https://travis-ci.org/trendmicro-frontend/react-table.svg?branch=master)](https://travis-ci.org/trendmicro-frontend/react-table) [![Coverage Status](https://coveralls.io/repos/github/trendmicro-frontend/react-table/badge.svg?branch=master)](https://coveralls.io/github/trendmicro-frontend/react-table?branch=master)
+## React Table Performance Tuning
 
-[![NPM](https://nodei.co/npm/@trendmicro/react-table.png?downloads=true&stars=true)](https://nodei.co/npm/@trendmicro/react-table/)
+Demo: https://trendmicro-frontend.github.io/react-table-performance-tuning/
 
-React Table
+## Requirement
 
-Demo: https://trendmicro-frontend.github.io/react-table
+There are 5000 records in the table. Your goal is to improve the render time by resolving the performance issue when toggling all the checkboxes.
 
-## Installation
+![image](https://user-images.githubusercontent.com/447801/31598744-d8e26ec2-b281-11e7-94c5-e9f5a5237ba1.png)
 
-1. Install the latest version of [react](https://github.com/facebook/react) and [react-table](https://github.com/trendmicro-frontend/react-table):
+## Setup
 
-  ```
-  npm install --save react @trendmicro/react-table @trendmicro/react-paginations
-  ```
+1. Fork the repository:
+    ![image](https://user-images.githubusercontent.com/447801/31598991-185f0406-b283-11e7-8f9a-c7ee690a16d8.png)
 
-2. At this point you can import `@trendmicro/react-table` and its styles in your application as follows:
+2. Run `npm run dev` to run **webpack-dev-server** for development.
 
-  ```js
-  import Table from '@trendmicro/react-table';
-  import { TablePagination } from '@trendmicro/react-paginations';
+3. Run `npm run prepublish` to build production code and push the changes to your forked repository.
 
-  // Be sure to include styles at some point, probably during your bootstraping
-  import '@trendmicro/react-table/dist/react-table.css';
-  import '@trendmicro/react-paginations/dist/react-paginations.css';
-  ```
+4. Go to **Settings > GitHub Pages** and use the `/docs` folder for GitHub Pages.
+    ![image](https://user-images.githubusercontent.com/447801/31599148-ac46bbe6-b283-11e7-8848-179eb393d9c1.png)
 
-## Usage
+5. Copy the URL of your published site and update the link in README.md or in the repository's website.
+    ![image](https://user-images.githubusercontent.com/447801/31599265-32bb0df8-b284-11e7-9e9c-248c89eede7b.png)
 
-### Selectable
+## Examples
+
+### examples/Selectable.jsx
 
 ```js
-import Table from '@trendmicro/react-table';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
+import Table from '../src';
 import Checkbox from './Checkbox';
 import styles from './index.styl';
 
 class Selectable extends PureComponent {
     static propTypes = {
-        data: PropTypes.array
+        data: PropTypes.array,
+        onUpdateStart: PropTypes.func,
+        onUpdateEnd: PropTypes.func
     };
 
     state = {
@@ -79,7 +79,6 @@ class Selectable extends PureComponent {
                 onChange={event => {
                     const checkbox = event.target;
                     const checked = !!checkbox.checked;
-
                     this.setState(state => ({
                         data: state.data.map(item => ({
                             ...item,
@@ -127,6 +126,10 @@ class Selectable extends PureComponent {
             width: 38
         },
         {
+            title: '#',
+            dataKey: 'id'
+        },
+        {
             title: 'Event Type',
             dataKey: 'eventType'
         },
@@ -140,9 +143,16 @@ class Selectable extends PureComponent {
         }
     ];
 
+    componentWillUpdate() {
+        this.props.onUpdateStart();
+    }
+    componentDidUpdate() {
+        this.props.onUpdateEnd();
+    }
     render() {
         return (
             <Table
+                justified={false}
                 rowKey="id"
                 columns={this.columns}
                 data={this.state.data}
@@ -158,7 +168,7 @@ class Selectable extends PureComponent {
 export default Selectable;
 ```
 
-## API
+## Table API
 
 ### Properties
 
