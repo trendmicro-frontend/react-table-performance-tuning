@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
+import chainedFunction from 'chained-function';
 
 class Checkbox extends PureComponent {
     static propTypes = {
@@ -8,6 +9,13 @@ class Checkbox extends PureComponent {
     static defaultProps = {
         indeterminate: false
     };
+
+    get checked() {
+        return this.el.checked;
+    }
+    get indeterminate() {
+        return this.el.indeterminate;
+    }
 
     componentDidMount() {
         this.el.indeterminate = this.props.indeterminate;
@@ -19,7 +27,7 @@ class Checkbox extends PureComponent {
     }
 
     render() {
-        const props = { ...this.props };
+        const { onChange, ...props } = this.props;
 
         delete props.indeterminate;
 
@@ -30,6 +38,12 @@ class Checkbox extends PureComponent {
                 ref={el => {
                     this.el = el;
                 }}
+                onChange={chainedFunction(
+                    () => {
+                        this.el.indeterminate = this.props.indeterminate;
+                    },
+                    onChange
+                )}
             />
         );
     }
