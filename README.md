@@ -27,8 +27,6 @@ Demo: https://trendmicro-frontend.github.io/react-table-performance-tuning/
     * 檢查 Table 內容能否正確呈現<br>
     * 按下 [Toggle All] 取得秒數（此步驟執行五次取最佳值）<br>
 
-# English
-
 ## Requirement
 
 There are 5000 records in the table. Your goal is to improve the render time by resolving the performance issue when toggling all the checkboxes.
