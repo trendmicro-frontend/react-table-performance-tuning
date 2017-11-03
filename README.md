@@ -1,6 +1,33 @@
-## React Table Performance Tuning
+# [JSDC 2017] 趨勢科技 - 誰是效能王
 
 Demo: https://trendmicro-frontend.github.io/react-table-performance-tuning/
+
+# 活動說明
+* 針對題目範例做效能優化，重繪時間越短則名次越佳，現場工作人員驗證後會將結果即時更新在英雄榜和臉書
+* 獎金和贈品：<br>
+	* 第一名：獎金 5000 元<br>
+    * 第二名：獎金 3000 元<br>
+    * 第三名：獎金 2000 元<br>
+    * 第四～十名：趨勢科技專屬T-Ball悠遊卡<br>
+    * 未得名的參賽者可獲得三頭數據線（銀色）<br>
+* 活動時間：2017/10/4 早上 到 2017/11/5 12:00 PM (由工作人員開始計算名次）
+* 名次公布：第二天下午二點半（14:55休息時間進行頒獎）
+
+# 活動流程
+
+1. 參賽者根據海報上的資訊取得此[專案網址](https://github.com/trendmicro-frontend/react-table-performance-tuning)，並 **Fork** 回參賽者的 GitHub 帳號下作答
+
+2. 參賽者將修改過後的結果 push 回 Fork 的專案中，並且用 GitHub Page 建立 Demo Site
+
+3. 參賽者將 Fork 的專案網址連同 Demo Site 提供給趨勢科技攤位的工作人員，並留下參賽者的姓名及聯絡方式
+
+4. 驗證方式：<br>
+    * 用現場工作人員準備的電腦打開參賽者的 GitHub 專案和 Demo Site<br>
+    * 檢查 Table 裡的資料數量（5000筆）是否正確<br>
+    * 檢查 Table 內容能否正確呈現<br>
+    * 按下 [Toggle All] 取得秒數（此步驟執行五次取最佳值）<br>
+
+# English
 
 ## Requirement
 
